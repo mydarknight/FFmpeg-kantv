@@ -1549,7 +1549,7 @@ static int dash_init(AVFormatContext *s)
         ctx->avoid_negative_ts = s->avoid_negative_ts;
         ctx->flags = s->flags;
 
-        os->parser = av_parser_init(st->codecpar->codec_id);
+        os->parser = av_parser_init(st->codecpar->codec_id, NULL); // fix compatibility issues related to hls decryption
         if (os->parser) {
             os->parser_avctx = avcodec_alloc_context3(NULL);
             if (!os->parser_avctx)
